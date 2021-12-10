@@ -30,7 +30,8 @@ Demo App
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
             <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-            <li class="active"><a href="#">Test</a></li>
+            <li class="active"><a href="#">Take Test</a></li>
+              <li><a href="http://127.0.0.1:5000/logout">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -45,6 +46,7 @@ Demo App
         <div class="panel-body" id="displayID">Loading...</div>
     </div>
         <textarea class="form-control z-depth-1" id="inputID" style="resize:none"></textarea>
+    <div id="wpmID"></div>
 
     </div><!-- /.container -->
 {% endblock %}

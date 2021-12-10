@@ -38,7 +38,9 @@ db.create_all()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if session.get("name"):
+        return render_template('index.html', name=session["name"])
+    return render_template('index.html', name="Guest")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -48,8 +50,8 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
-                session[user] = user
-                return redirect(url_for('dashboard'))
+                session["name"] = form.username.data
+                return redirect(url_for('index'))
 
     return render_template('login.html', form=form)
 
@@ -73,7 +75,18 @@ def dashboard():
 
 @app.route('/type')
 def type():
-    return render_template('type.html')
+    if session.get("name"):
+        return render_template('type.html')
+    else:
+        form = RegisterForm()
+        return render_template('login.html', form=form, message=" before accessing the test.")
+
+
+@app.route('/logout')
+def logout():
+    if session.get("name"):
+        del session["name"]
+    return render_template('index.html', name="Guest")
 
 
 if __name__ == '__main__':

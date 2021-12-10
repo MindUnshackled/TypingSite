@@ -26,6 +26,8 @@ Demo App
             <li class="active"><a href="#">Home</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
             <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+              <li><a href="{{ url_for('type') }}">Take Test</a></li>
+              <li><a href="http://127.0.0.1:5000/logout">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -36,6 +38,7 @@ Demo App
       <div class="starter-template">
         <h1>Typing Test</h1>
         <p class="lead" id="quote">Sign up for an account then login to take tests.<br></p>
+          {{ name }}
       </div>
 
     </div><!-- /.container -->
