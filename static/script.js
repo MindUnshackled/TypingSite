@@ -14,7 +14,6 @@ inputElement.addEventListener('input', ()=>{
     }
 
     let correct = true
-
     quotearray.forEach((characterSpan, index)=>{
         const character = value[index]
         if(character == null){
@@ -77,7 +76,7 @@ function getTime() {
         inputElement.setAttribute("readonly", "")
         wpmElement.innerText= wpm
     }
-    return Math.floor(20-((new Date() - startTime)/1000))
+    return Math.floor(60-((new Date() - startTime)/1000))
 }
 
 renderQuote()
