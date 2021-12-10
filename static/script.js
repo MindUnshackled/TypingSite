@@ -4,6 +4,7 @@ const inputElement = document.getElementById('inputID')
 const timerElement = document.getElementById('timerID')
 const wpmElement = document.getElementById('wpmID')
 let wpm = 0
+const averagewordlength = 5
 inputElement.addEventListener('input', ()=>{
     const quotearray = displayElement.querySelectorAll('span')
     const value = inputElement.value.split('')
@@ -13,7 +14,7 @@ inputElement.addEventListener('input', ()=>{
     }
 
     let correct = true
-    wpm = 0
+
     quotearray.forEach((characterSpan, index)=>{
         const character = value[index]
         if(character == null){
@@ -25,7 +26,6 @@ inputElement.addEventListener('input', ()=>{
             characterSpan.classList.add('correct')
             characterSpan.classList.remove('incorrect')
             wpm++
-
         }
         else{
             characterSpan.classList.add('incorrect')
@@ -65,19 +65,19 @@ function startTimer(){
     intervalID = setInterval(()=>{
         timerElement.innerText = getTime()
         let pcg = Math.floor(timerElement.innerText/60*100)
-        wpmElement.innerText= Math.floor(wpm/4)
         timerElement.setAttribute('aria-valuenow', pcg)
         timerElement.setAttribute('style','width:'+Number(pcg)+'%')
+        wpmElement.innerText= wpm
     }, 1000)
 }
 
 function getTime() {
     if(timerElement.innerText == 0){
-        console.log("yay")
         clearInterval(intervalID)
         inputElement.setAttribute("readonly", "")
+        wpmElement.innerText= wpm
     }
-    return Math.floor(60-((new Date() - startTime)/1000))
+    return Math.floor(20-((new Date() - startTime)/1000))
 }
 
 renderQuote()
